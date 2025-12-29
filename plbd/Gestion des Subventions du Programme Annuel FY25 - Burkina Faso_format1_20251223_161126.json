@@ -1,0 +1,474 @@
+{
+  "nom_projet": "Gestion des Subventions du Programme Annuel FY25 - Burkina Faso",
+  "version": "1.0",
+  "date": "2025-12-23",
+  "auteur": "AI Assistant",
+  "contexte": {
+    "presentation": "Ce document décrit la spécification fonctionnelle détaillée d'un système de gestion des subventions, basé sur la Déclaration de Programme Annuel (APS) du Département d'État des États-Unis pour le Burkina Faso FY25, émise par la Section de Diplomatie Publique (PDS) de l'Ambassade des États-Unis à Ouagadougou.",
+    "objectifs_metier": [
+      "Renforcer les liens culturels entre les États-Unis et le Burkina Faso.",
+      "Promouvoir la coopération bilatérale à travers des programmes culturels et d'échange.",
+      "Mettre en avant les valeurs communes et la compréhension mutuelle.",
+      "Promouvoir les intérêts économiques, culturels et les valeurs partagées des États-Unis.",
+      "Bâtir une relation bilatérale solide.",
+      "Renforcer l'influence économique mondiale des États-Unis.",
+      "Contribuer à la sécurité et à l'économie des États-Unis.",
+      "Encourager la coopération bilatérale et les échanges culturels.",
+      "Accroître le leadership et l'influence des États-Unis."
+    ],
+    "perimetre": "Le système gère le cycle de vie complet des candidatures aux subventions du programme FY25 APS de la PDS de l'Ambassade des États-Unis à Ouagadougou, de la publication de l'opportunité à l'administration post-attribution.",
+    "acteurs": [
+      {
+        "role": "Administrateur du Programme",
+        "description": "Représentant de la Section de Diplomatie Publique (PDS) responsable de la gestion globale du programme de subventions, y compris la publication des appels, la supervision de la sélection et l'administration des fonds."
+      },
+      {
+        "role": "Candidat",
+        "description": "Organisation à but non lucratif, institution éducative, individu, organisation internationale ou institution gouvernementale (à l'exclusion des entités à but lucratif) soumettant une proposition de projet pour obtenir un financement."
+      },
+      {
+        "role": "Réviseur",
+        "description": "Membre du comité de révision chargé d'évaluer les candidatures selon des critères prédéfinis."
+      },
+      {
+        "role": "Responsable des Subventions",
+        "description": "Personnel de l'Ambassade en charge de l'administration des subventions attribuées, y compris le traitement des paiements et le suivi des rapports."
+      }
+    ]
+  },
+  "description_generale": {
+    "architecture_fonctionnelle": "Le système est conçu comme une plateforme centralisée pour la gestion des opportunités de financement, la soumission et l'évaluation des candidatures, et l'administration des subventions attribuées. Il intègre potentiellement des interfaces avec des systèmes externes comme SAM.gov et Grants.gov.",
+    "flux_principaux": [
+      "Publication d'une opportunité de financement.",
+      "Soumission d'une candidature par un candidat.",
+      "Vérification de l'éligibilité d'une candidature.",
+      "Évaluation d'une candidature par un comité.",
+      "Sélection et attribution d'une subvention.",
+      "Administration et suivi d'une subvention attribuée.",
+      "Reporting financier et de programme."
+    ],
+    "regles_gestion": [
+      "Les candidatures doivent être soumises en anglais et en dollars US.",
+      "Les propositions ne doivent pas dépasser 8 pages.",
+      "Le financement ne sera pas accordé pour des activités partisanes, religieuses, de levée de fonds, de lobbying, de recherche scientifique, de développement institutionnel, ou des programmes dupliqués.",
+      "Les organisations candidates doivent avoir un UEI et être enregistrées sur SAM.gov, sauf exceptions.",
+      "L'évaluation des candidatures se fait selon des critères de pertinence, de faisabilité, de capacité organisationnelle, de planification, de budget, de suivi/évaluation et de durabilité.",
+      "Les fonds sont attribués sous réserve de disponibilité."
+    ]
+  },
+  "modules": [
+    {
+      "id": "MOD001",
+      "nom": "Gestion des Opportunités de Financement",
+      "description": "Permet la création, la publication et la gestion des détails des appels à propositions de subventions.",
+      "fonctions": [
+        {
+          "id": "F001",
+          "nom": "Publication de l'APS",
+          "description": "Permet à l'administrateur de publier les détails de l'Année Fiscale (FY25) et les informations relatives au programme.",
+          "regles_metier": [
+            "Doit spécifier l'année fiscale.",
+            "Doit assigner un numéro d'opportunité unique.",
+            "Doit définir une date limite de soumission claire.",
+            "Doit spécifier les types de financement possibles."
+          ],
+          "donnees_entree": [
+            "Année Fiscale",
+            "Numéro d'Opportunité",
+            "Date Limite de Soumission",
+            "Heure Limite de Soumission",
+            "Types de Financement"
+          ],
+          "donnees_sortie": [
+            "Opportunité de Financement Publiée"
+          ],
+          "cas_nominal": "L'administrateur saisit toutes les informations requises pour le programme FY25 APS et le publie.",
+          "cas_erreur": [
+            "Informations manquantes.",
+            "Format de date invalide.",
+            "Numéro d'opportunité non unique."
+          ],
+          "contraintes": [
+            "Les données doivent être conformes aux formats spécifiés."
+          ]
+        },
+        {
+          "id": "F002",
+          "nom": "Définition des Domaines Prioritaires",
+          "description": "Permet à l'administrateur de définir les objectifs généraux, les exemples de programmes et les domaines prioritaires pour les appels à propositions.",
+          "regles_metier": [
+            "Doit lister clairement les objectifs du programme.",
+            "Doit fournir des exemples pertinents de projets.",
+            "Doit spécifier les domaines prioritaires (ex: Prospérité Économique, Bonne Gouvernance)."
+          ],
+          "donnees_entree": [
+            "Objectifs Généraux",
+            "Exemples de Programmes",
+            "Domaines Prioritaires"
+          ],
+          "donnees_sortie": [
+            "Domaines Prioritaires Définis pour l'Opportunité"
+          ],
+          "cas_nominal": "L'administrateur détaille les priorités stratégiques de la PDS.",
+          "cas_erreur": [
+            "Domaines prioritaires trop vagues."
+          ],
+          "contraintes": []
+        }
+      ]
+    },
+    {
+      "id": "MOD002",
+      "nom": "Gestion des Candidatures",
+      "description": "Gère le processus de soumission, d'enregistrement et de validation des candidatures des potentiels bénéficiaires.",
+      "fonctions": [
+        {
+          "id": "F003",
+          "nom": "Soumission de Candidature",
+          "description": "Permet aux candidats de soumettre leurs documents de candidature via les canaux spécifiés.",
+          "regles_metier": [
+            "Les documents doivent être en anglais.",
+            "Les budgets doivent être en dollars US.",
+            "Le format des documents doit être conforme (Calibri 12pt, etc.).",
+            "Les pages doivent être numérotées."
+          ],
+          "donnees_entree": [
+            "Formulaires de candidature (SF-424, SF-424A, SF-424B)",
+            "Page de Résumé",
+            "Proposition (incluant résumé, problème, objectifs, activités, personnel, etc.)",
+            "Justification du Budget",
+            "Pièces Jointes (CV, lettres de soutien, etc.)"
+          ],
+          "donnees_sortie": [
+            "Candidature Soumise"
+          ],
+          "cas_nominal": "Un candidat soumet tous les documents requis dans les formats spécifiés avant la date limite.",
+          "cas_erreur": [
+            "Documents manquants.",
+            "Non-conformité aux formats.",
+            "Soumission hors délai.",
+            "Langue incorrecte."
+          ],
+          "contraintes": [
+            "Méthodes de soumission: e-mail, Grants.gov, MyGrants.",
+            "Taille maximale de la proposition: 8 pages."
+          ]
+        },
+        {
+          "id": "F004",
+          "nom": "Vérification de l'Éligibilité des Candidats",
+          "description": "Vérifie si les candidats et leurs entités sont éligibles selon les critères établis.",
+          "regles_metier": [
+            "Vérifier le type d'organisation candidate (non lucratif, éducatif, etc.).",
+            "Vérifier l'enregistrement SAM.gov et l'UEI pour les organisations.",
+            "Identifier les candidats non éligibles (entités à but lucratif).",
+            "Traiter les demandes d'exemption pour UEI/SAM.gov."
+          ],
+          "donnees_entree": [
+            "Informations sur l'entité candidate",
+            "UEI du candidat",
+            "Statut d'enregistrement SAM.gov",
+            "Type de candidature (organisation/individu)"
+          ],
+          "donnees_sortie": [
+            "Statut d'éligibilité du candidat"
+          ],
+          "cas_nominal": "Une organisation candidate est vérifiée comme étant enregistrée sur SAM.gov et possédant un UEI valide.",
+          "cas_erreur": [
+            "Entité à but lucratif.",
+            "Absence d'UEI ou d'enregistrement SAM.gov sans justification.",
+            "Informations d'éligibilité incorrectes."
+          ],
+          "contraintes": [
+            "Les individus ne sont pas tenus d'avoir un UEI ou de s'enregistrer sur SAM.gov."
+          ]
+        },
+        {
+          "id": "F005",
+          "nom": "Validation des Restrictions de Financement",
+          "description": "Assure que les propositions ne demandent pas de financement pour des activités interdites.",
+          "regles_metier": [
+            "Identifier et rejeter les demandes de financement pour activités partisanes.",
+            "Identifier et rejeter les demandes de financement pour activités religieuses.",
+            "Identifier et rejeter les demandes de financement pour activités de levée de fonds.",
+            "Identifier et rejeter les demandes de financement pour activités de lobbying.",
+            "Identifier et rejeter les demandes de financement pour recherche scientifique.",
+            "Identifier et rejeter les demandes de financement pour développement institutionnel.",
+            "Identifier et rejeter les demandes de financement pour programmes dupliqués."
+          ],
+          "donnees_entree": [
+            "Description des activités du projet",
+            "Détails du budget"
+          ],
+          "donnees_sortie": [
+            "Conformité aux restrictions de financement"
+          ],
+          "cas_nominal": "La proposition décrit des activités autorisées et un budget conforme.",
+          "cas_erreur": [
+            "Le projet propose des activités religieuses ou partisanes.",
+            "Le budget inclut des frais de lobbying."
+          ],
+          "contraintes": []
+        }
+      ]
+    },
+    {
+      "id": "MOD003",
+      "nom": "Gestion de l'Évaluation",
+      "description": "Supporte le processus d'évaluation des candidatures par un comité de révision selon des critères définis.",
+      "fonctions": [
+        {
+          "id": "F006",
+          "nom": "Attribution des Candidatures aux Réviseurs",
+          "description": "Permet d'assigner les candidatures éligibles aux membres du comité de révision.",
+          "regles_metier": [
+            "Chaque candidature doit être assignée à un nombre approprié de réviseurs (ex: minimum 2).",
+            "Éviter les conflits d'intérêts."
+          ],
+          "donnees_entree": [
+            "Liste des candidatures éligibles",
+            "Liste des réviseurs disponibles",
+            "Conflits d'intérêts potentiels"
+          ],
+          "donnees_sortie": [
+            "Candidatures assignées aux réviseurs"
+          ],
+          "cas_nominal": "Les 15 candidatures sont assignées à des réviseurs sans conflit d'intérêts.",
+          "cas_erreur": [
+            "Manque de réviseurs disponibles.",
+            "Conflit d'intérêts non détecté."
+          ],
+          "contraintes": []
+        },
+        {
+          "id": "F007",
+          "nom": "Évaluation des Candidatures",
+          "description": "Permet aux réviseurs de noter les candidatures selon les critères d'évaluation et de fournir des commentaires.",
+          "regles_metier": [
+            "Utiliser les points d'évaluation spécifiés (Pertinence: 15, Faisabilité: 20, Capacité: 15, Planification: 15, Budget: 10, Suivi/Éval: 15, Durabilité: 10).",
+            "Fournir des justifications écrites pour les notes."
+          ],
+          "donnees_entree": [
+            "Candidature à évaluer",
+            "Notes pour chaque critère",
+            "Commentaires du réviseur"
+          ],
+          "donnees_sortie": [
+            "Évaluation complétée par réviseur"
+          ],
+          "cas_nominal": "Un réviseur remplit l'évaluation complète avec des notes et des commentaires pertinents.",
+          "cas_erreur": [
+            "Notes manquantes pour certains critères.",
+            "Commentaires insuffisants ou non pertinents.",
+            "Notes incohérentes."
+          ],
+          "contraintes": [
+            "Les notes doivent être dans la plage spécifiée (0-X points)."
+          ]
+        },
+        {
+          "id": "F008",
+          "nom": "Synthèse des Évaluations",
+          "description": "Agrège les scores des réviseurs pour chaque candidature et prépare un rapport pour le comité de sélection.",
+          "regles_metier": [
+            "Calculer le score moyen par critère et le score total pour chaque candidature.",
+            "Identifier les candidatures les mieux classées.",
+            "Afficher les commentaires agrégés ou synthétisés."
+          ],
+          "donnees_entree": [
+            "Évaluations de tous les réviseurs pour chaque candidature"
+          ],
+          "donnees_sortie": [
+            "Rapport de synthèse des évaluations",
+            "Classement des candidatures"
+          ],
+          "cas_nominal": "Le système génère un rapport clair montrant le score agrégé et le classement des candidatures.",
+          "cas_erreur": [
+            "Erreur de calcul des scores.",
+            "Classement incorrect."
+          ],
+          "contraintes": []
+        },
+        {
+          "id": "F009",
+          "nom": "Vérification des Risques",
+          "description": "Effectue une vérification des risques sur les candidatures présélectionnées avant l'attribution.",
+          "regles_metier": [
+            "Vérifier la stabilité financière.",
+            "Évaluer les systèmes de gestion.",
+            "Examiner l'historique des subventions.",
+            "Analyser les résultats des audits.",
+            "Évaluer la capacité de mise en œuvre.",
+            "Rechercher des activités criminelles ou terroristes."
+          ],
+          "donnees_entree": [
+            "Candidature présélectionnée",
+            "Données externes (bases de données, rapports)"
+          ],
+          "donnees_sortie": [
+            "Rapport de vérification des risques",
+            "Statut de risque (faible, moyen, élevé)"
+          ],
+          "cas_nominal": "Une vérification des risques est effectuée sans révéler de problèmes majeurs.",
+          "cas_erreur": [
+            "Identification de problèmes de stabilité financière.",
+            "Historique négatif de subventions.",
+            "Indicateurs d'activités criminelles."
+          ],
+          "contraintes": []
+        }
+      ]
+    },
+    {
+      "id": "MOD004",
+      "nom": "Gestion des Attributions et Administration Post-Attribution",
+      "description": "Gère le processus d'attribution des subventions et le suivi administratif des projets financés.",
+      "fonctions": [
+        {
+          "id": "F010",
+          "nom": "Notification des Décisions",
+          "description": "Informe les candidats de l'état de leur candidature (retenue ou rejetée).",
+          "regles_metier": [
+            "Envoyer une notification formelle aux candidats retenus.",
+            "Envoyer une notification aux candidats non retenus, si possible avec des explications."
+          ],
+          "donnees_entree": [
+            "Liste des candidatures retenues",
+            "Liste des candidatures rejetées",
+            "Informations de contact des candidats"
+          ],
+          "donnees_sortie": [
+            "Notifications envoyées aux candidats"
+          ],
+          "cas_nominal": "Tous les candidats reçoivent une notification de la décision concernant leur proposition.",
+          "cas_erreur": [
+            "Erreur dans la liste des candidats notifiés.",
+            "Notification incorrecte (retenu au lieu de rejeté)."
+          ],
+          "contraintes": []
+        },
+        {
+          "id": "F011",
+          "nom": "Création de l'Accord d'Attribution",
+          "description": "Génère les documents officiels d'attribution de la subvention.",
+          "regles_metier": [
+            "L'accord doit inclure tous les termes et conditions.",
+            "La date de début doit être clairement indiquée."
+          ],
+          "donnees_entree": [
+            "Candidature retenue sélectionnée",
+            "Budget approuvé",
+            "Termes et conditions standard"
+          ],
+          "donnees_sortie": [
+            "Accord d'Attribution généré et prêt à être signé"
+          ],
+          "cas_nominal": "Un accord d'attribution est généré pour le bénéficiaire sélectionné avec toutes les informations correctes.",
+          "cas_erreur": [
+            "Informations incorrectes dans l'accord.",
+            "Absence de date de début."
+          ],
+          "contraintes": []
+        },
+        {
+          "id": "F012",
+          "nom": "Gestion des Paiements",
+          "description": "Traite les demandes de paiement des bénéficiaires et initie les décaissements.",
+          "regles_metier": [
+            "Les paiements sont demandés via le formulaire SF-270.",
+            "Les paiements doivent être conformes aux termes de l'accord."
+          ],
+          "donnees_entree": [
+            "Demande de paiement (SF-270)",
+            "Accord d'Attribution"
+          ],
+          "donnees_sortie": [
+            "Demande de paiement approuvée",
+            "Paiement initié"
+          ],
+          "cas_nominal": "Un bénéficiaire soumet un SF-270 valide, qui est approuvé et payé.",
+          "cas_erreur": [
+            "SF-270 incomplet ou invalide.",
+            "Demande de paiement excédant le solde disponible.",
+            "Non-conformité aux termes de l'accord."
+          ],
+          "contraintes": []
+        },
+        {
+          "id": "F013",
+          "nom": "Gestion des Rapports",
+          "description": "Collecte et traite les rapports financiers et de programme soumis par les bénéficiaires.",
+          "regles_metier": [
+            "Les rapports de progrès sont dus 30 jours après la période.",
+            "Les rapports finaux sont dus 120 jours après la fin du projet.",
+            "Les rapports doivent être conformes aux exigences."
+          ],
+          "donnees_entree": [
+            "Rapport de progrès",
+            "Rapport final",
+            "Rapports financiers"
+          ],
+          "donnees_sortie": [
+            "Rapports reçus et validés"
+          ],
+          "cas_nominal": "Le bénéficiaire soumet un rapport de progrès et un rapport final dans les délais impartis.",
+          "cas_erreur": [
+            "Rapports soumis en retard.",
+            "Rapports incomplets ou incorrects.",
+            "Manque de conformité aux exigences."
+          ],
+          "contraintes": [
+            "Utilisation du système FADR pour le suivi des données d'aide étrangère."
+          ]
+        }
+      ]
+    }
+  ],
+  "exigences_non_fonctionnelles": {
+    "performance": [
+      "Le système doit permettre le traitement efficace d'un volume potentiellement important de candidatures.",
+      "Les temps de réponse pour les soumissions en ligne doivent être minimisés.",
+      "La génération de rapports synthétisés doit être rapide."
+    ],
+    "securite": [
+      "Protection des données sensibles des candidats et des bénéficiaires.",
+      "Authentification et autorisation des utilisateurs.",
+      "Protection contre les accès non autorisés et les cyberattaques.",
+      "Gestion des données sensibles liées à la sécurité (activités criminelles/terrorisme)."
+    ],
+    "disponibilite": [
+      "Le système doit être disponible 24h/24 et 7j/7 pendant les périodes de soumission et de gestion des subventions.",
+      "Des sauvegardes régulières doivent être effectuées pour assurer la continuité des opérations."
+    ],
+    "scalabilite": [
+      "Le système doit être capable de gérer une augmentation du nombre d'utilisateurs et de candidatures pour les futures années fiscales sans dégradation significative des performances."
+    ]
+  },
+  "contraintes_techniques": {
+    "environnement": [
+      "Les candidats doivent avoir accès à internet pour les soumissions électroniques.",
+      "L'environnement doit supporter l'intégration avec des systèmes externes comme SAM.gov et Grants.gov."
+    ],
+    "technologies": [
+      "Technologies web modernes pour les interfaces utilisateur.",
+      "Bases de données robustes pour le stockage des informations.",
+      "Solutions pour l'intégration API avec des systèmes externes."
+    ],
+    "normes": [
+      "Respect des standards de sécurité des données.",
+      "Conformité avec les politiques du Département d'État des États-Unis.",
+      "Utilisation de formats de documents standardisés pour les formulaires."
+    ]
+  },
+  "glossaire": {
+    "APS": "Annual Program Statement (Déclaration de Programme Annuel)",
+    "PDS": "Public Diplomacy Section (Section de Diplomatie Publique)",
+    "FY": "Fiscal Year (Année Fiscale)",
+    "UEI": "Unique Entity Identifier (Identifiant Unique d'Entité)",
+    "SAM.gov": "System for Award Management (Système de Gestion des Attributions)",
+    "Grants.gov": "Portail fédéral pour la recherche et la soumission de subventions aux États-Unis.",
+    "MyGrants": "Plateforme interne du Département d'État pour la gestion des subventions.",
+    "FADR": "Foreign Assistance Data Review (Examen des Données d'Aide Étrangère)."
+  },
+  "notes": "Ce document est une interprétation d'un document d'appel à propositions transformé en spécification fonctionnelle. Certaines fonctions peuvent être des représentations du processus décrit plutôt que des fonctionnalités logicielles directes."
+}
